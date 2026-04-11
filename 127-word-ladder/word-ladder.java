@@ -18,7 +18,7 @@ class Solution {
         Pair a=new Pair(beginWord,1);
         Queue<Pair> queue=new LinkedList<>();
         queue.offer(a);
-        set.remove(a);
+        set.remove(beginWord);
 
         return bfs(queue,set,endWord);
 
