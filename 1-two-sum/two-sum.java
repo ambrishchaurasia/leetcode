@@ -5,15 +5,17 @@ class Solution {
         {
             hm.put(nums[i],i);
         }
-
+        int ans[]=new int[2];
         for(int i=0;i<nums.length;i++)
         {
-            if(hm.containsKey(target-nums[i]))
+            int rem=target-nums[i];
+            int index=hm.getOrDefault(rem,-1);
+            if(index!=-1 && index !=i)
             {
-                if(i!=hm.get(target-nums[i]))
-            return new int[]{i,hm.get(target-nums[i])};
+            ans=new int[]{i,index};
+            break;
             }
         }
-        return new int[]{-1,-1};
+        return ans;
     }
 }
