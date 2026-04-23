@@ -37,11 +37,6 @@ class Solution {
                     eventualsafe[graph[i][x]]=false;
                     return true;
                     }
-                    else
-                    {
-                    eventualsafe[i]=true;
-
-                    }
                 }
                 else if(pathvis[graph[i][x]])
                 {
