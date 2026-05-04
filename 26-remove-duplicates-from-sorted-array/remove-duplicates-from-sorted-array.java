@@ -1,7 +1,6 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
         ArrayList<Integer> arr=new ArrayList<>();
-        Arrays.sort(nums);
         int c=0;
         int i=0;
         List<Integer> ans=new ArrayList<>();
