@@ -33,6 +33,7 @@ class Solution {
             Pair a=pq.poll();
             int node=a.target;
             int weight=a.weight;
+             if (weight > dis[node]) continue;
 
             for(int i=0;i<adj.get(node).size();i++)
             {
