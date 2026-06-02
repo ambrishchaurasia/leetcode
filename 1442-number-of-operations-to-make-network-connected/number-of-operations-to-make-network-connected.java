@@ -64,13 +64,12 @@ class Solution {
             ds.unionByRank(u,v);
         }
 
-       
-        HashSet s=new HashSet<>();
+       int noc=0;
         for(int i=0;i<n;i++)
         {
-            s.add(ds.findUP(i));
+            if(ds.findUP(i)==i)
+            noc++;
         }
-        int noc=s.size();
 
         if(ex<noc-1)
         return -1;
