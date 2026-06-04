@@ -9,8 +9,7 @@ class Solution {
 
         for(int i=num1;i<=num2;i++)
         {
-            StringBuilder num=new StringBuilder();
-            num.append(Integer.toString(i));
+            String num=Integer.toString(i);
             for(int j=1;j<num.length()-1;j++)
             {
                 int prev=num.charAt(j-1)-'0';
