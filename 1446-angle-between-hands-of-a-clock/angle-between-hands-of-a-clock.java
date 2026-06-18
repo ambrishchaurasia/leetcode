@@ -5,11 +5,7 @@ class Solution {
         double hDegree=((hour-0)*30)+(0.5*minutes);
         double mDegree=minutes*6;
         double d1= Math.abs(mDegree-hDegree);
-        double com=360.0;
-        double d2=Math.abs(d1-com);
+        double d2=Math.abs(d1-360.0);
         return Math.min(d1,d2);
-
-
-        
     }
 }
