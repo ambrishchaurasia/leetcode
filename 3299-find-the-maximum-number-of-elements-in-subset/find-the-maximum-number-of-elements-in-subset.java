@@ -36,7 +36,7 @@ class Solution {
                 }
                 else
                 {
-                    if(len%2==0)
+                    
                     len--;
     
                     break;
