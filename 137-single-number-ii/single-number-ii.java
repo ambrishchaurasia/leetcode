@@ -1,18 +1,13 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        int ans=0;
-        for(int i=0;i<=31;i++)
+        int bits_jinki_count_is_1=0;
+        int bits_jinki_count_is_2=0;
+        for(int i:nums)
         {
-             int cnt=0;
-
-            for(int num:nums)
-            {
-                if((num&(1<<i))!=0)
-                cnt++;
-            }
-            if(cnt % 3!=0)
-            ans=ans|(1<<i);
+            bits_jinki_count_is_1=(bits_jinki_count_is_1 ^ i )& ~bits_jinki_count_is_2;
+            bits_jinki_count_is_2=(bits_jinki_count_is_2 ^ i )& ~bits_jinki_count_is_1;
+            
         }
-        return ans;
+        return bits_jinki_count_is_1;
     }
 }
