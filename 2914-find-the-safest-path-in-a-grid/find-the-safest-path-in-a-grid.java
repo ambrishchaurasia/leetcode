@@ -77,7 +77,10 @@ class Solution {
                  if(newr>=0 && newr<grid.size() && newc>=0 && newc<grid.get(0).size())
                  {
                 int newdis=grid.get(newr).get(newc);
+                
                 int distance=Math.min(dis,newdis);
+                if((newr==grid.size()-1) && (newc==grid.size()-1))
+                return distance;
                 if(!vis[newr][newc] )
                 {
                     pq.offer(new Pair(newr,newc,distance));
