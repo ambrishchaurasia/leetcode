@@ -65,11 +65,10 @@ class Solution {
             int dis=a.dis;
             if(vis[x][y])
             continue;
-                        vis[x][y]=true;
-
             if(x==grid.size()-1 && y==grid.size()-1)
             return dis;
 
+            vis[x][y]=true;
 
             for(int i=0;i<4;i++)
             {
@@ -78,14 +77,9 @@ class Solution {
                  if(newr>=0 && newr<grid.size() && newc>=0 && newc<grid.get(0).size())
                  {
                 int newdis=grid.get(newr).get(newc);
-                
                 int distance=Math.min(dis,newdis);
-                if((newr==grid.size()-1) && (newc==grid.size()-1))
-                return distance;
                 if(!vis[newr][newc] )
                 {
-                    vis[x][y]=true;
-
                     pq.offer(new Pair(newr,newc,distance));
                 }
                 }
