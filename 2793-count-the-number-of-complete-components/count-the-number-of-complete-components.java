@@ -6,11 +6,15 @@ class Solution {
         
         int v=0;
         int e=0;
-        visited[i]=true;
 
         while(!queue.isEmpty())
         {
             int a=queue.poll();
+            if(visited[a])
+            continue;
+
+            visited[a]=true;
+
             v++;
             for(int it=0;it<adj.get(a).size();it++)
             {
@@ -18,8 +22,6 @@ class Solution {
                 e++;
                 if(!visited[nei])
                 {
-                    visited[nei]=true;
-
                     queue.offer(nei);
                 }
             }
