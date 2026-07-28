@@ -12,7 +12,7 @@ class Solution {
         }
 
         StringBuilder ans=new StringBuilder();
-        String left="";
+        char left='0';
         boolean toggle=false;
         for(int i=0;i<26;i++)
         {
@@ -26,7 +26,7 @@ class Solution {
 
                 if(rem==1)
                 {
-                left=left+ch;
+                left=ch;
                 toggle=true;
                 }
 
@@ -38,7 +38,7 @@ class Solution {
             else if(fre[i]==1)
             {
                 toggle=true;
-                left=left+ch;
+                left=ch;
             }
         }
         String copy=ans.toString();
