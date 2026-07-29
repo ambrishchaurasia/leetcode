@@ -21,7 +21,6 @@ class Solution {
             if(isPal(i,j,s))
             {
                 curr.add(s.substring(i,j+1));
-                System.out.println(curr);
                 rec(ans,curr,s,j+1);
                 curr.remove(curr.size()-1);
 
