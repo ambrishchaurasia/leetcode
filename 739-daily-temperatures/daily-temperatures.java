@@ -18,28 +18,23 @@ class Solution {
 
         for(int i=n-2;i>=0;i--)
         {
-            while(stack.peek().val <=temp[i])
+            while(!stack.isEmpty() && stack.peek().val <=temp[i])
             {
                 stack.pop();   
-
-                if(stack.isEmpty())
-                break; 
             }
 
-            if(stack.isEmpty())
+            
+            if(!stack.isEmpty())
             {
-                ans[i]=0;
-                 stack.push(new Pair(temp[i],i));
-
-                continue;
-            }
-
             Pair a=stack.peek();
             int val=a.val;
             int index=a.index;
-        
             ans[i]=index-i;
-             stack.push(new Pair(temp[i],i));
+            }
+           else 
+           ans[i]=0;
+           
+           stack.push(new Pair(temp[i],i));
             
         }
         return ans;
