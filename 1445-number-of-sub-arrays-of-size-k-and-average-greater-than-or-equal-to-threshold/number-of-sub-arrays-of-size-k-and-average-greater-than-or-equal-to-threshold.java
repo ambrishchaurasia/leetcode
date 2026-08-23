@@ -1,31 +1,30 @@
 class Solution {
-    public int numOfSubarrays(int[] arr, int k, int threshold) {
+    public int numOfSubarrays(int[] nums, int k, int threshold) {
+        int sum=0;
         int l=0;
-        int r=0;
-        int curr=0;
-        int ans=0;
-        while(r<arr.length)
+        int r=k;
+        for(int i=0;i<k;i++)
         {
-            
-            curr=curr+arr[r];
-         
-            if(r-l+1==k && threshold<=((1.0*curr)/k))
+            sum=sum+nums[i];
+        }
+
+        int ans=0;
+        double avg=(1.0*sum)/(1.0*k);
+        if(avg>=threshold)
+        ans++;
+
+        while(r<nums.length)
+        {
+            sum=sum-nums[l];
+            l++;
+            sum=sum+nums[r];
+            avg=(1.0*sum)/(1.0*k);
+            if(avg>=threshold)
             {
-                ans++;
                 System.out.print(r);
-                curr=curr-arr[l];
-                 l++;
-
-
+            ans++;
             }
-            else if(r-l+1==k && threshold>(1.0*curr/k))
-            {
-                 curr=curr-arr[l];
-                l++;
-                
-               
-            }
-               r++;
+            r++;  
         }
         return ans;
     }
