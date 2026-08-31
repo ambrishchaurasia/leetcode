@@ -33,7 +33,6 @@ class Solution {
             n=n.next;
             cur++;
         }
-        Collections.sort(ans);
         
         for(int i=0;i<ans.size()-1;i++)
         {
