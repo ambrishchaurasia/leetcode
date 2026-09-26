@@ -21,16 +21,16 @@ class Solution {
 
             if(i<s.length() && s.charAt(i)=='(')
             {
-                String key="";
+                StringBuilder key=new StringBuilder();
                 i++;
             while(s.charAt(i)!=')')
             {
-                key=key+s.charAt(i);
+            key.append(s.charAt(i));
             i++;
             }
-            System.out.print(key);
-            if(hm.containsKey(key))
-            ans.append(hm.get(key));
+            String k=key.toString();
+            if(hm.containsKey(k))
+            ans.append(hm.get(k));
             else
             ans=ans.append("?");
              i++;
