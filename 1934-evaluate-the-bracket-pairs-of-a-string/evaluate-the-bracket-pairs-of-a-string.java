@@ -8,13 +8,13 @@ class Solution {
             hm.put(key,val);
 
         }
-        String ans="";
+        StringBuilder ans=new StringBuilder();
         int i=0;
         while(i<s.length())
         {
             while(i<s.length() && s.charAt(i)!='(')
             {
-                ans=ans+s.charAt(i);
+                ans.append(s.charAt(i));
                i++;
 
             }
@@ -30,13 +30,13 @@ class Solution {
             }
             System.out.print(key);
             if(hm.containsKey(key))
-            ans=ans+hm.get(key);
+            ans.append(hm.get(key));
             else
-            ans=ans+"?";
+            ans=ans.append("?");
              i++;
          }   
         }
 
-        return ans;
+        return ans.toString();
     }
 }
