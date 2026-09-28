@@ -1,47 +1,46 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> ans=new ArrayList<>();
-        HashMap<Integer,Integer> hm=new HashMap<>();
         Arrays.sort(nums);
+        HashSet<List<Integer>> hs=new HashSet<>();
 
         for(int i=0;i<nums.length;i++)
         {
-            hm.put(nums[i],i);
-        }
+            while(i>0 && i<nums.length && nums[i]==nums[i-1])
+            i++;
 
-        for(int i=0;i<nums.length-1;i++)
-        {
-              if(i>0 && nums[i]==nums[i-1])
-              continue;
-            for(int j=i+1;j<nums.length;j++)
-            {
-                if(j>i+1 && nums[j]==nums[j-1])
-               continue;
-            
-                int search=-1*(nums[i]+nums[j]);
-                int index=hm.getOrDefault(search,-1);
-                if(index!=-1 && index != i && index!=j)
-            {
-                    ArrayList<Integer> t=new ArrayList<>();
-                if(index>j)
-                    {
-                    t.add(nums[i]);
-                    t.add(nums[j]);
-                    t.add(search);
-                    ans.add(t);
+            int l=i+1;
+            int r=nums.length-1;
 
+            while(l<r)
+            {
+                while(l<r && nums[l]==nums[l-1] && l-1!=i)
+                l++;
+                while(l<r && r<nums.length-1 && r>i && nums[r]==nums[r+1])
+                r--;
+                if(l==r)
+                continue;
+                if(nums[i]+nums[l]+nums[r]==0)
+                {
+                    List<Integer> cur=new ArrayList<>();
+                    cur.add(nums[i]);
+                    cur.add(nums[l]);
+                    cur.add(nums[r]);
+                    hs.add(cur);
+                    l++;
+                    r--;
+                }
+                else if(nums[i]+nums[l]+nums[r]<0)
+                {
+                    l++;
+                }
+                else
+                {
+                    r--;
                 }
 
             }
-            
         }
+            List<List<Integer>> ans=new ArrayList<>(hs);
+            return ans;
     }
-    HashSet<ArrayList<Integer>> set=new HashSet(ans);
-     List<List<Integer>> answer=new ArrayList<>();
-   for(ArrayList<Integer> a:set)
-   {
-    answer.add(a);
-   }
-   return answer;
-}
 }
