@@ -1,0 +1,2 @@
+# Write your MySQL qhttps://leetcode.com/_next/static/images/dark-pending-f313d6fe32951fb6b4d48ad3ee4f3821.gif$0uery statement below
+SELECT name from Employee where id IN(SELECT managerId from Employee GROUP BY managerId HAVING COUNT(*)>4)
