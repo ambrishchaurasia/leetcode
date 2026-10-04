@@ -1,34 +1,37 @@
 class Solution {
     public boolean checkValidString(String s) {
-        int mcount =0;
-       int mxcount =0;
-       
-
-        for(int i=0;i<s.length();i++)
+        int low=0;
+        int high=0;
+        for(char ch:s.toCharArray())
         {
-            if(s.charAt(i)=='(')
+            if(ch==')')
             {
-            mcount++;
-            mxcount++;
+                low--;
+                high--;
             }
-
-            else if(s.charAt(i)==')')
+            else if(ch=='(')
             {
-             mcount--;
-            mxcount--;
+                low++;
+                high++;
             }
-
             else
             {
-                mcount--;
-                mxcount++;
+                low--;
+                high++;
             }
-            if(mcount<0)
-            mcount=0;
 
-            if(mxcount<0)
-            return false;
-      }
-              return mcount==0;
+            if(low<0)
+            low=0;
+           
+            if(high<0)
+        return false;
+            
+        }
+        
+
+        return low==0;
+
+
+      
     }
 }
