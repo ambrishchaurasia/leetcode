@@ -6,13 +6,14 @@ class Solution {
         {
             if(sum<=9)
             {
-                ans.append( Integer.toString(sum));
+                int idx=(int)sum+'0';
+                char ap=(char)idx;
+                ans.append(ap);
                 sum=0;
             }
             else
-            {
-                int cur=9;
-                ans.append(Integer.toString(cur));
+            { 
+                ans.append('9');
                 sum=sum-9;
             }
             counter++;
