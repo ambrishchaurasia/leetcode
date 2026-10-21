@@ -25,7 +25,6 @@ class Solution {
                 continue;
 
             Queue<int[]> queue = new LinkedList<>();
-
             queue.offer(new int[]{i, -1});
             char clr=colors.charAt(i);
             String seq="";
@@ -45,9 +44,7 @@ class Solution {
 
 
             while (!queue.isEmpty() && con) {
-
                 int n = queue.size();
-
                 // Expected color at this depth
                 char expected = seq.charAt((level)%3);
                
@@ -80,9 +77,6 @@ class Solution {
                       queue.offer(new int[]{nei, na});
                         
                     }
-
-                    if (!con)
-                        break;
                 }
 
                 ++level;
