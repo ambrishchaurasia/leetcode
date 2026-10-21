@@ -1,94 +1,47 @@
-
-import java.util.*;
-
 class Solution {
+
     public int findColoredRoot(int[][] edges, String colors) {
-        //LIST BUILDING 
-        List<List<Integer>> adj = new ArrayList<>();
+        int[]indeg=new int[colors.length()];
+        int[]outdeg=new int[colors.length()];
+        HashMap<Character,Integer> pair=new HashMap<>();
+        pair.put('R',0);
+        pair.put('B',1);
+        pair.put('W',2);
 
-        for (int i = 0; i < colors.length(); i++) {
-            adj.add(new ArrayList<>());
-        }
+        for(int i=0;i<edges.length;i++)
+        {
+            int u=edges[i][0];
+            int v=edges[i][1];
+            
+            if(colors.charAt(u)==colors.charAt(v))
+            return -1;
 
-        for (int[] edge : edges) {
-            int n1 = edge[0];
-            int n2 = edge[1];
-
-            adj.get(n1).add(n2);
-            adj.get(n2).add(n1);
-        }
-
-        for (int i = 0; i < colors.length(); i++) {
-
-            // Root cannot have more than two children
-            if (adj.get(i).size() > 2)
-                continue;
-
-            Queue<int[]> queue = new LinkedList<>();
-            queue.offer(new int[]{i, -1});
-            char clr=colors.charAt(i);
-            String seq="";
-            if(clr=='R')
+            else if((pair.get(colors.charAt(u))+1)%3==pair.get(colors.charAt(v)))
             {
-                seq="RBW";
-            }
-            else if(clr=='B')
-            {
-                seq="BWR";
+                outdeg[u]++;
+                indeg[v]++;
             }
             else
-            seq="WRB";
-
-            boolean con = true;
-            int level = 0;
-
-
-            while (!queue.isEmpty() && con) {
-                int n = queue.size();
-                // Expected color at this depth
-                char expected = seq.charAt((level)%3);
-               
-
-                for (int k = 0; k < n; k++) {
-
-                    int[]a = queue.poll();
-                    int na = a[0];
-                    int pa = a[1];
-
-                    // Validate color at current depth
-                    if (colors.charAt(na) != expected) {
-                        con = false;
-                        break;
-                    }
-
-                    int children = 0;
-
-                    for (int nei : adj.get(na)) {
-                        if (nei == pa)
-                            continue;
-
-                        children++;
-
-                        // Every node can have at most two children
-                        if (children > 2) {
-                            con = false;
-                            break;
-                        }
-                      queue.offer(new int[]{nei, na});
-                        
-                    }
-                    if(!con)
-                    break;
-                }
-
-                ++level;
+            {
+                outdeg[v]++;
+                indeg[u]++;
             }
 
-            if (con) {
-                return i;
+        }
+        int dup=-1;
+        for(int i=0;i<colors.length();i++)
+        {
+            if(indeg[i]>1)
+            return -1;
+            if(outdeg[i]>2)
+            return -1;
+            if(indeg[i]==0)
+            {
+                if(dup!=-1)
+                return -1;
+                dup=i;
             }
         }
-
-        return -1;
+        return dup;
     }
 }
