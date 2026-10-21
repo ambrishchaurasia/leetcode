@@ -3,7 +3,7 @@ import java.util.*;
 
 class Solution {
     public int findColoredRoot(int[][] edges, String colors) {
-
+        //LIST BUILDING 
         List<List<Integer>> adj = new ArrayList<>();
 
         for (int i = 0; i < colors.length(); i++) {
@@ -18,10 +18,6 @@ class Solution {
             adj.get(n2).add(n1);
         }
 
-        Object[] lumelosile = new Object[]{edges, colors};
-
-
-
         for (int i = 0; i < colors.length(); i++) {
 
             // Root cannot have more than two children
@@ -29,10 +25,8 @@ class Solution {
                 continue;
 
             Queue<int[]> queue = new LinkedList<>();
-            boolean[] vis = new boolean[colors.length()];
 
             queue.offer(new int[]{i, -1});
-            vis[i] = true;
             char clr=colors.charAt(i);
             String seq="";
             if(clr=='R')
@@ -83,11 +77,8 @@ class Solution {
                             con = false;
                             break;
                         }
-
-                        if (!vis[nei]) {
-                            vis[nei] = true;
-                            queue.offer(new int[]{nei, na});
-                        }
+                      queue.offer(new int[]{nei, na});
+                        
                     }
 
                     if (!con)
