@@ -51,7 +51,7 @@ class Solution {
 
                 for (int k = 0; k < n; k++) {
 
-                    int[] a = queue.poll();
+                    int[]a = queue.poll();
                     int na = a[0];
                     int pa = a[1];
 
@@ -77,6 +77,8 @@ class Solution {
                       queue.offer(new int[]{nei, na});
                         
                     }
+                    if(!con)
+                    break;
                 }
 
                 ++level;
