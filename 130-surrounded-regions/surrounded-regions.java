@@ -1,6 +1,8 @@
 class Solution {
     public void solve(char[][] board) {
         Queue <int[]> queue=new LinkedList<>();
+                boolean vis[][]=new boolean[board.length][board[0].length];
+
         for(int i=0;i<board.length;i++)
         {
             for(int j=0;j<board[0].length;j++)
@@ -9,10 +11,10 @@ class Solution {
                 {
                     board[i][j]='M';
                     queue.offer(new int[]{i,j});
+                    vis[i][j]=true;
                 }
             }
         }
-
         int row[]={-1,0,1,0};
         int col[]={0,1,0,-1};
         while(!queue.isEmpty())
@@ -24,11 +26,14 @@ class Solution {
             {
                 int cx=a[0]+row[i];
                 int cy=a[1]+col[i];
-                if(cx>=0 && cy>=0 && cx<board.length && cy<board[0].length && board[cx][cy]=='O')
+                
+                if(cx>=0 && cy>=0 && cx<board.length && cy<board[0].length && board[cx][cy]=='O' && !vis[cx][cy])
                 {
                     board[cx][cy]='M';
                     queue.offer(new int[]{cx,cy});
+                    vis[cx][cy]=true;
                 }
+                
             }
 
         }
