@@ -9,7 +9,6 @@ class Solution {
             HashSet<Character> hs1=new HashSet();
             HashMap<Integer,Integer> hm2=new HashMap<>();
             HashSet<Character> hs2=new HashSet();
-                                System.out.println(j);
 
             while(i>=0)
             {
