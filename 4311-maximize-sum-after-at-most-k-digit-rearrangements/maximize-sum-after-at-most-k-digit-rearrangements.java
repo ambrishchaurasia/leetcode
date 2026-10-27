@@ -20,7 +20,6 @@ class Solution {
                     arr[it]--;
                 }
             }
-            System.out.println(num);
             li.add(new int[]{nums[i],num-nums[i]});
         }
         Collections.sort(li,(a,b)->b[1]-a[1]);
