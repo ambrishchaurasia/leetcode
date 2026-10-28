@@ -1,30 +1,39 @@
 class Solution {
     public int countStaircase(int[] nums) {
         int ans=0;
+        
         for(int i=0;i<nums.length;i++)
         {
-            HashMap<Integer,Integer> hm=new LinkedHashMap<>();
+            int invalid=0;
+            HashMap<Integer,int[]> hm=new LinkedHashMap<>();
+            int c=1;
             for(int j=i;j<nums.length;j++)
             {
-                hm.put(nums[j],hm.getOrDefault(nums[j],0)+1);
-                int c=1;
-                boolean valid=true;
-                for(Map.Entry<Integer,Integer> it:hm.entrySet())
+                if(!hm.containsKey(nums[j]))
                 {
-                    int num=it.getKey();
-                    int fre=it.getValue();
-                    if(fre!=c)
-                    {
-                    valid=false;
-                    break;
-                    }
-                    ++c;
+                hm.put(nums[j],new int[]{c++,1});
+                if(c-1!=1)
+                ++invalid;
                 }
-                if(valid && i!=j)
+                else
                 {
-                ans++;
-                }
+                    int arr[]=hm.get(nums[j]);
+                    int idx=arr[0];
+                    int fre=arr[1];
 
+                    if(fre!=idx)
+                    --invalid;
+
+                    if(fre+1!=idx)
+                    ++invalid;
+
+                    if(invalid==0)
+                    {
+                        System.out.println("i="+i+"j="+j);
+                    ++ans;
+                    }
+                    hm.put(nums[j],new int[]{idx,fre+1});
+                }
             }
         }
         return ans+nums.length;
