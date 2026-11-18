@@ -5,39 +5,41 @@ class Solution {
         {
             adj.add(new ArrayList<>());
         }
-        for(int i[]:prerequisites)
+        for(int i=0;i<prerequisites.length;i++)
         {
-            int x=i[0];
-            int y=i[1];
-            adj.get(y).add(x);
+            int node=prerequisites[i][0];
+            int par=prerequisites[i][1];
+
+            adj.get(par).add(node);
         }
-        int vis[]=new int [numCourses];
+        int vis[]=new int[numCourses];
         for(int i=0;i<numCourses;i++)
         {
             if(vis[i]==0)
             {
-           boolean res= dfs(adj,i,vis);
-           if(res==false)
-           return false;
+            vis[i]=1;
+            if(dfs(adj,i,vis)==false)
+            return false;
             }
         }
         return true;
-    }
-    boolean dfs(List<List<Integer>> adj,int i,int vis[])
-    {
-        vis[i]=1;
 
-        for(int it=0;it<adj.get(i).size();it++)
+    }
+    boolean dfs(List<List<Integer>> adj,int node,int []vis)
+    {
+        for(int i=0;i<adj.get(node).size();i++)
         {
-            int node=adj.get(i).get(it);
-            if(vis[node]==0)
+            if(vis[adj.get(node).get(i)]==0)
             {
-                dfs(adj,node,vis);
+            vis[adj.get(node).get(i)]=1;
+            if(dfs(adj,adj.get(node).get(i),vis)==false)
+            return false;
             }
-            if(vis[node]==1)
+            else if(vis[adj.get(node).get(i)]==1)
             return false;
         }
-        vis[i]=2;
+        vis[node]=2;
         return true;
+        
     }
 }
