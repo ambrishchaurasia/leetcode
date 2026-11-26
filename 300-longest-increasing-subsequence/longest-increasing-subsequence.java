@@ -1,40 +1,30 @@
 class Solution {
-    int dp[];
+    int dp[][];
     public int lengthOfLIS(int[] nums) {
-        int ans=0;
-        dp=new int[nums.length];
-        Arrays.fill(dp,-1);
+         dp=new int[nums.length+1][nums.length+1];
         for(int i=0;i<nums.length;i++)
         {
-          int curr=1+ findLis(nums,i);
-          if(ans<curr)
-          ans=curr;
+            Arrays.fill(dp[i],-1);
         }
+        int ans=rec(0,-1,nums);
         return ans;
     }
-    //what recursion menas: length of lis starting from index 'curr' ,whose previous index is 'prev'
-    int findLis(int []nums,int curr)
+    int rec(int idx,int pre,int []nums)
     {
-
-        if(dp[curr]!=-1)
-        return dp[curr];
-
-         if(curr==nums.length)
+        if(idx==nums.length)
         return 0;
 
-        int ans=0;
-        for(int i=curr+1;i<nums.length;i++)
-        {
-            if(nums[i]<nums[curr])
-            continue;
+        if(dp[idx][pre+1]!=-1)
+        return dp[idx][pre+1];
 
-            if(nums[i]>nums[curr])
-            {
-                int cur= 1+findLis(nums,i);
-                if(cur>ans)
-                ans=cur;
-            }
-            }
-            return dp[curr]=ans;
+        //skip curr
+        int len=rec(idx+1,pre,nums);
+
+        //take curr
+        if(pre==-1 || nums[idx]>nums[pre])
+        {
+            len=Math.max(len,1+rec(idx+1,idx,nums));
+        }
+        return dp[idx][pre+1]=len;
     }
 }
